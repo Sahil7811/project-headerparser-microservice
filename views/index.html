@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Request Header Parser</title>
     <link
       rel="shortcut icon"
@@ -9,35 +10,136 @@
       type="image/x-icon"
     />
     <link
-      href="https://fonts.googleapis.com/css?family=Roboto"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
-      type="text/css"
     />
     <link href="style.css" rel="stylesheet" type="text/css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
   </head>
-
   <body>
+    <!-- Animated background elements -->
+    <div class="particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+
+    <!-- Main content -->
     <div class="container">
       <h1>Request Header Parser Microservice</h1>
 
       <h2>Example Usage:</h2>
       <p>
-        <a href="api/whoami">[base url]/api/whoami</a>
+        <a href="api/whoami" class="api-link">[base url]/api/whoami</a>
       </p>
 
       <h2>Example Output:</h2>
-      <p>
+      <div class="code-container">
         <code
-          >{"ipaddress":"::ffff:159.20.14.100",<br />"language":"en-US,en;q=0.5",<br />"software":"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0"}</code
+          >{<br />
+          <span class="json-key">"ipaddress"</span
+          ><span class="json-punctuation">:</span>
+          <span class="json-string">"::ffff:159.20.14.100"</span
+          ><span class="json-punctuation">,</span><br />
+          <span class="json-key">"language"</span
+          ><span class="json-punctuation">:</span>
+          <span class="json-string">"en-US,en;q=0.5"</span
+          ><span class="json-punctuation">,</span><br />
+          <span class="json-key">"software"</span
+          ><span class="json-punctuation">:</span>
+          <span class="json-string"
+            >"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:50.0) Gecko/20100101
+            Firefox/50.0"</span
+          ><br />
+          }</code
         >
-      </p>
+      </div>
     </div>
+
     <div class="footer">
       <p>by <a href="https://www.freecodecamp.org">freeCodeCamp</a></p>
     </div>
+
+    <script>
+      // Click effect
+      document.addEventListener("click", function (e) {
+        const effect = document.createElement("div");
+        effect.className = "click-effect";
+        effect.style.left = e.clientX - 10 + "px";
+        effect.style.top = e.clientY - 10 + "px";
+        document.body.appendChild(effect);
+
+        setTimeout(() => {
+          document.body.removeChild(effect);
+        }, 600);
+      });
+
+      // Enhanced hover effects
+      const apiLink = document.querySelector(".api-link");
+      apiLink.addEventListener("mouseenter", function () {
+        this.style.transform = "translateY(-2px) scale(1.02)";
+      });
+
+      apiLink.addEventListener("mouseleave", function () {
+        this.style.transform = "translateY(0) scale(1)";
+      });
+
+      // Particle animation enhancement
+      function createParticle() {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        particle.style.left = Math.random() * 100 + "%";
+        particle.style.width = particle.style.height =
+          Math.random() * 4 + 2 + "px";
+        particle.style.animationDuration = Math.random() * 10 + 15 + "s";
+        particle.style.animationDelay = Math.random() * 2 + "s";
+
+        document.querySelector(".particles").appendChild(particle);
+
+        setTimeout(() => {
+          particle.remove();
+        }, 25000);
+      }
+
+      // Create new particles periodically
+      setInterval(createParticle, 3000);
+
+      // Smooth scroll prevention
+      document.addEventListener(
+        "wheel",
+        function (e) {
+          e.preventDefault();
+        },
+        { passive: false }
+      );
+
+      document.addEventListener(
+        "keydown",
+        function (e) {
+          if (
+            [
+              "Space",
+              "ArrowUp",
+              "ArrowDown",
+              "ArrowLeft",
+              "ArrowRight",
+            ].indexOf(e.code) > -1
+          ) {
+            e.preventDefault();
+          }
+        },
+        false
+      );
+    </script>
   </body>
 </html>
